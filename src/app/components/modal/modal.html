@@ -1,0 +1,6 @@
+<dialog #dialog (click)="onClick($event)">
+  <div class="modal-content">
+    <button #buttonRef class="close" (click)="close(buttonRef)">×</button>
+    <ng-content></ng-content>
+  </div>
+</dialog>

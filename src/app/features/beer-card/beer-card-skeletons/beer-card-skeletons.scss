@@ -1,0 +1,32 @@
+.beer-card-skeletons {
+  ::ng-deep mat-card {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-bottom: 16px;
+    background-color: #f3f4f7;
+    border: none;
+    border-radius: 0;
+  }
+
+  ::ng-deep &__header {
+    margin-left: auto;
+    height: 40px;
+    width: 40px;
+    background-color: lightgrey;
+  }
+
+  ::ng-deep &__content {
+    height: 400px;
+    background-color: lightgrey;
+  }
+
+  ::ng-deep &__actions {
+    height: 40px;
+    width: 100%;
+    margin-top: auto;
+    background-color: lightgrey;
+  }
+}

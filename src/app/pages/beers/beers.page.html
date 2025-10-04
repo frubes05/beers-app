@@ -1,0 +1,14 @@
+<app-header #header (homeClicked)="beersFacade.resetFilters()" />
+<section class="container">
+  <app-beer-filters />
+  <app-beer-list [facade]="beersFacade" (detailsClicked)="handleDetailsClicked($event)" />
+  <app-scroll-to />
+  <app-pagination
+    [showBackButton]="beersFacade.showBackButton()"
+    [showPagination]="beersFacade.showPagination()"
+    [page]="beersFacade.page"
+    (previousPage)="handlePageClick($event)"
+    (nextPage)="handlePageClick($event)"
+  />
+</section>
+<app-footer />

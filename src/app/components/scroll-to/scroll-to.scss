@@ -1,0 +1,27 @@
+@use 'styles/mixins' as *;
+
+button {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  padding: 0;
+  margin: 0;
+  width: 36px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  @include media-breakpoint-up(md) {
+    right: 24px;
+  }
+
+  img {
+    height: 40px;
+    width: 40px;
+  }
+}

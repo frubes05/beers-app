@@ -1,0 +1,36 @@
+<app-card class="beer-card">
+  <div card-header>
+    <button
+      class="beer-card__button beer-card__button--favorites"
+      matButton
+      (click)="onFavoritesClick(beer)"
+    >
+      @if (beer.isFavorite) {
+      <img src="assets/star-selected-24px.svg" alt="selected star" />
+      } @else {
+      <img src="assets/star_outline-24px.svg" alt="outline star" />
+      }
+    </button>
+  </div>
+
+  <div card-content>
+    <img
+      mat-card-image
+      [src]="beer.image_url"
+      [alt]="beer.name"
+      fallback="assets/logo.png"
+      loading="lazy"
+    />
+  </div>
+
+  <div card-actions>
+    <button
+      class="beer-card__button beer-card__button--details"
+      matButton="outlined"
+      (click)="onDetailsClick(beer)"
+    >
+      <img src="assets/info-24px.svg" height="24" width="24" alt="info" />
+      <span>Details</span>
+    </button>
+  </div>
+</app-card>

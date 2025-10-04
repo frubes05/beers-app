@@ -1,0 +1,16 @@
+@use 'sass:map';
+@use 'breakpoints' as *;
+
+@mixin media-breakpoint-up($from) {
+  $min: map.get($breakpoints, $from);
+  @media screen and (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($to) {
+  $max: map.get($breakpoints, $to);
+  @media screen and (max-width: $max) {
+    @content;
+  }
+}

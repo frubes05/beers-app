@@ -1,0 +1,37 @@
+<app-modal (closed)="closeBeerModal($event)">
+  <div class="beer-modal">
+    <div class="beer-header">
+      <div class="beer-info">
+        <h2 class="beer-title">{{ beerData.name }}</h2>
+        <p class="beer-tagline">{{ beerData.tagline }}</p>
+
+        <div class="beer-meta">
+          <span><strong>ABV:</strong> {{ beerData.abv }}%</span>
+          <span><strong>IBU:</strong> {{ beerData.ibu }}</span>
+          <span><strong>First Brewed:</strong> {{ beerData.first_brewed }}</span>
+        </div>
+      </div>
+    </div>
+
+    <img
+      [src]="beerData.image_url || 'assets/placeholder-beer.jpeg'"
+      [alt]="beerData.name"
+      loading="lazy"
+      class="beer-image"
+    />
+
+    <p class="beer-description">{{ beerData.description }}</p>
+
+    <div class="beer-extra">
+      <h3>Food Pairing</h3>
+      <ul>
+        @for (food of beerData.food_pairing; track beerData.id) {
+        <li>{{ food }}</li>
+        }
+      </ul>
+
+      <h3>Brewer’s Tips</h3>
+      <p>{{ beerData.brewers_tips }}</p>
+    </div>
+  </div>
+</app-modal>

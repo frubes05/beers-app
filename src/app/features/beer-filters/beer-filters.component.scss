@@ -1,0 +1,130 @@
+@use 'styles/mixins' as *;
+
+.beer-filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  padding: 16px 0;
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+    gap: 0 32px;
+    padding: 16px;
+  }
+
+  &__item {
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+      width: auto;
+    }
+
+    &.abv-range,
+    &.favorites,
+    &.beer-name,
+    &.sort {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & > mat-label {
+      margin-bottom: 16px;
+    }
+  }
+
+  mat-form-field {
+    ::ng-deep {
+      .mdc-text-field--filled {
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 8px;
+        height: 44px;
+
+        .mat-mdc-form-field-infix,
+        .mat-mdc-form-field-flex {
+          height: 44px;
+          padding-top: 0;
+          padding-bottom: 0;
+          min-height: unset;
+
+          input,
+          select {
+            height: 100%;
+          }
+        }
+      }
+
+      .mdc-line-ripple {
+        &::before {
+          border-bottom-style: none;
+        }
+      }
+    }
+  }
+
+  mat-label {
+    font-size: 20px;
+  }
+
+  mat-slider {
+    @include media-breakpoint-up(md) {
+      min-width: 200px;
+    }
+
+    ::ng-deep {
+      .mdc-slider__track {
+        background-color: black;
+      }
+
+      .mdc-slider__track--active_fill {
+        border: none !important;
+      }
+
+      .mdc-slider__thumb-knob {
+        background-color: #ffc71e;
+        border-color: #ffc71e;
+
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          z-index: 1;
+          top: 50%;
+          left: 50%;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          background-color: black;
+        }
+      }
+    }
+  }
+
+  mat-checkbox {
+    ::ng-deep {
+      .mdc-checkbox__background {
+        background-color: white !important;
+        border-color: #ffc71e !important;
+      }
+
+      .mdc-checkbox--selected ~ .mdc-checkbox__background {
+        background-color: #ffc71e !important;
+        border-color: #ffc71e !important;
+      }
+
+      .cdk-focused .mdc-checkbox__background {
+        border-color: #ffc71e !important;
+      }
+
+      .mdc-checkbox:hover .mdc-checkbox__background {
+        border-color: #ffc71e !important;
+      }
+      s .mat-mdc-checkbox-ripple .mat-ripple-element {
+        background-color: rgba(255, 199, 30, 0.2) !important;
+      }
+    }
+  }
+}

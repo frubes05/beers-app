@@ -1,0 +1,31 @@
+<form [formGroup]="formService.formGroup" class="beer-filters container">
+  <div class="beer-filters__item beer-name">
+    <mat-label>Filter by name</mat-label>
+    <mat-form-field>
+      <input matInput placeholder="Ex. IPA" formControlName="beer_name" />
+    </mat-form-field>
+  </div>
+
+  <div class="beer-filters__item abv-range">
+    <mat-label> Alcohol content (%) </mat-label>
+    <mat-slider min="0" max="15" step="0.1" discrete="true">
+      <input formControlName="abv_gt" matSliderStartThumb />
+      <input formControlName="abv_lt" matSliderEndThumb />
+    </mat-slider>
+  </div>
+  <div class="beer-filters__item favorites">
+    <mat-label>Favorites only</mat-label>
+    <mat-checkbox formControlName="favoritesOnly" />
+  </div>
+  <div class="beer-filters__item sort">
+    <mat-label>Sort</mat-label>
+    <mat-form-field>
+      <select matNativeControl formControlName="sortBy">
+        <option value="name:asc">Beer name (ASC)</option>
+        <option value="name:desc">Beer name (DESC)</option>
+        <option value="abv:asc">Alcohol content (ASC)</option>
+        <option value="abv:desc">Alcohol content (DESC)</option>
+      </select>
+    </mat-form-field>
+  </div>
+</form>

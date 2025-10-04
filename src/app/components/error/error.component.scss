@@ -1,0 +1,18 @@
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+
+  p {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  button {
+    width: fit-content;
+    font-size: 16px;
+  }
+}
