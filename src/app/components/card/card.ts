@@ -6,7 +6,6 @@ import { MatCard, MatCardHeader, MatCardContent, MatCardActions } from '@angular
   selector: 'app-card',
   imports: [MatCard, MatCardHeader, MatCardContent, MatCardActions, NgClass],
   templateUrl: './card.html',
-  styleUrl: './card.scss',
 })
 export class Card {
   @Input() className = '';

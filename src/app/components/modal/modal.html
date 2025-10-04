@@ -1,5 +1,5 @@
-<dialog #dialog (click)="onClick($event)">
-  <div class="modal-content">
+<dialog (click)="onClick($event)" (keydown)="onClick($event)">
+  <div #dialogContent class="modal-content">
     <button #buttonRef class="close" (click)="close(buttonRef)">×</button>
     <ng-content></ng-content>
   </div>

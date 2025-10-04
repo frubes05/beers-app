@@ -8,7 +8,7 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular
   providers: [],
 })
 export class Modal<T> {
-  @ViewChild('dialog', { static: true }) dialogRef!: ElementRef<HTMLDialogElement>;
+  @ViewChild('dialogContent', { static: true }) dialogContentRef!: ElementRef<HTMLElement>;
   @Output() closed = new EventEmitter<HTMLElement>();
 
   close(element: HTMLElement) {
@@ -16,6 +16,9 @@ export class Modal<T> {
   }
 
   onClick(event: Event) {
-    this.closed.emit(event.target as HTMLElement);
+    const targetElement = event.target as HTMLElement;
+    if (!this.dialogContentRef.nativeElement.contains(targetElement)) {
+      this.closed.emit(event.target as HTMLElement);
+    }
   }
 }
