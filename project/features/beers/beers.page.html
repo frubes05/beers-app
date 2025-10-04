@@ -1,7 +1,15 @@
 <app-header #header (homeClicked)="beersFacade.resetFilters()" />
 <section class="container">
   <app-beer-filters />
-  <app-beer-list [facade]="beersFacade" (detailsClicked)="handleDetailsClicked($event)" />
+  <app-beer-list
+    [loading]="beersFacade.loading()"
+    [beers]="beersFacade.beers()"
+    [error]="beersFacade.error()"
+    (retryClicked)="beersFacade.retry()"
+    (resetFiltersClicked)="beersFacade.resetFilters()"
+    (savedFavoriteBeer)="beersFacade.saveFavoriteBeer($event)"
+    (detailsClicked)="handleDetailsClicked($event)"
+  />
   <app-scroll-to />
   <app-pagination
     [showBackButton]="beersFacade.showBackButton()"

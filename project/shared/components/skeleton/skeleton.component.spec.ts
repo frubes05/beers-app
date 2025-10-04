@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SkeletonComponent } from '@shared/components/skeleton/skeleton.component';
@@ -9,6 +10,7 @@ describe('Skeleton', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SkeletonComponent],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SkeletonComponent);

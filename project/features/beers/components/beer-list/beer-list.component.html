@@ -1,21 +1,21 @@
-@if (facade.loading()) {
+@if (loading) {
   <ul class="beers-list">
     @for (_ of [1, 2, 3, 4, 5, 6]; let i = $index; track i) {
       <li><app-beer-card-skeletons /></li>
     }
   </ul>
-} @else if (facade.error()) {
-  <app-error (retryClicked)="facade.retry()" />
-} @else if (facade.beers().length === 0) {
-  <app-beer-list-empty (filtersRemoved)="facade.resetFilters()" />
+} @else if (error) {
+  <app-error (retryClicked)="retryClicked.emit()" />
+} @else if (beers.length === 0) {
+  <app-beer-list-empty (filtersRemoved)="resetFiltersClicked.emit()" />
 } @else {
   <ul class="beers-list">
-    @for (beer of facade.beers(); track beer.id) {
+    @for (beer of beers; track beer.id) {
       <li>
         <app-beer-card
           [beer]="beer"
           (detailsClicked)="handleDetailsClicked($event)"
-          (favoritesClicked)="facade.saveFavoriteBeer($event)"
+          (favoritesClicked)="savedFavoriteBeer.emit($event)"
         />
       </li>
     }

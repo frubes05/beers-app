@@ -14,8 +14,14 @@ import { BeerViewModel } from '@features/beers/types/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BeerListComponent {
-  @Input({ required: true }) facade!: BeersFacade;
+  @Input({ required: true }) error!: string | null;
+  @Input({ required: true }) loading!: boolean;
+  @Input({ required: true }) beers!: Array<BeerViewModel>;
+
   @Output() detailsClicked = new EventEmitter<BeerViewModel>();
+  @Output() savedFavoriteBeer = new EventEmitter<BeerViewModel>();
+  @Output() retryClicked = new EventEmitter();
+  @Output() resetFiltersClicked = new EventEmitter();
 
   handleDetailsClicked(event: BeerViewModel): void {
     this.detailsClicked.emit(event);

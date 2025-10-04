@@ -1,3 +1,4 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BeerCardSkeletons } from '@features/beers/components/beer-card/beer-card-skeletons/beer-card-skeletons.component';
@@ -9,6 +10,7 @@ describe('BeerCardSkeletons', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BeerCardSkeletons],
+      providers: [provideZonelessChangeDetection()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BeerCardSkeletons);
