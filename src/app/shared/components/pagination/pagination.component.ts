@@ -12,8 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-pagination',
   standalone: true,
   imports: [MatButtonModule],
-  templateUrl: './pagination.html',
-  styleUrls: ['./pagination.scss'],
+  templateUrl: './pagination.component.html',
+  styleUrls: ['./pagination.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent {

@@ -10,8 +10,8 @@ import {
 @Component({
   selector: 'app-modal',
   imports: [],
-  templateUrl: './modal.html',
-  styleUrl: './modal.scss',
+  templateUrl: './modal.component.html',
+  styleUrl: './modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {

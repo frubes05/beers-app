@@ -5,9 +5,9 @@ import { MatCard, MatCardHeader, MatCardContent, MatCardActions } from '@angular
 @Component({
   selector: 'app-card',
   imports: [MatCard, MatCardHeader, MatCardContent, MatCardActions, NgClass],
-  templateUrl: './card.html',
+  templateUrl: './card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Card {
+export class CardComponent {
   @Input() className = '';
 }

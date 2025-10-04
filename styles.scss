@@ -1,6 +1,6 @@
 @use '@angular/material' as mat;
 @use './styles/main' as *;
-@use 'styles/mixins' as mixins;
+@use './styles/mixins' as mixins;
 
 html {
   @include mat.theme(

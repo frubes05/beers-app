@@ -3,11 +3,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { BeerViewModel } from '../../types/types';
 import { FallbackImageDirective } from '../../../../shared/directives/fallback/fallback.directive';
-import { Card } from '../../../../shared/components/card/card.component';
+import { CardComponent } from '../../../../shared/components/card/card.component';
 
 @Component({
   selector: 'app-beer-card',
-  imports: [MatButtonModule, MatCardModule, FallbackImageDirective, Card],
+  imports: [MatButtonModule, MatCardModule, FallbackImageDirective, CardComponent],
   templateUrl: './beer-card.component.html',
   styleUrl: './beer-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

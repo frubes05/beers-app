@@ -18,17 +18,19 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "index": "index.html",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "assets",
+                "output": "assets"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["src"]
+              "includePaths": ["./"]
             }
           },
           "configurations": {
@@ -78,12 +80,13 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "assets",
+                "output": "assets"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["styles.scss"],
             "stylePreprocessorOptions": {
-              "includePaths": ["src"]
+              "includePaths": ["./"]
             }
           }
         }
