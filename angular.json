@@ -11,13 +11,13 @@
         }
       },
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "project",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "browser": "src/main.ts",
+            "browser": "project/main.ts",
             "index": "index.html",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
