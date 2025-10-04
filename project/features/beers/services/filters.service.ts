@@ -10,10 +10,10 @@ export class FiltersService {
   readonly filters = signal<BeerFilters>(
     (() => {
       const urlParams = this.urlService.getObjectFromSearchParams(
-        new URLSearchParams(window.location.search)
+        new URLSearchParams(window.location.search),
       ) as Partial<BeerFilters>;
       return { ...DEFAULT_FILTERS, ...urlParams };
-    })()
+    })(),
   );
 
   updateFilters(partial: BeerFilters) {

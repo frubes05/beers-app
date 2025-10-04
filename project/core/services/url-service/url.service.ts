@@ -16,9 +16,9 @@ export class UrlService {
   readonly queryParams$ = merge(
     this.route.queryParams.pipe(
       debounceTime(300),
-      distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b))
+      distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
     ),
-    this.refresh$.pipe(map(() => this.route.snapshot.queryParams))
+    this.refresh$.pipe(map(() => this.route.snapshot.queryParams)),
   );
 
   triggerRefresh() {

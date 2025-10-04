@@ -24,7 +24,7 @@ export class FormService {
       {
         ...DEFAULT_FILTERS,
       },
-      { emitEvent: true }
+      { emitEvent: true },
     );
     this.formGroup.updateValueAndValidity({ emitEvent: true });
   }

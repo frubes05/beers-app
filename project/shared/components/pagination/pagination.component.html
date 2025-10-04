@@ -1,7 +1,9 @@
-@if (showPagination && !showBackButton || page() > 1 && showBackButton) {
-<div class="pagination">
-  <button mat-button (click)="previousPage.emit(page() - 1)" [disabled]="page() <= 1">Prev</button>
-  <span>{{ page() }}</span>
-  <button mat-button (click)="nextPage.emit(page() + 1)">Next</button>
-</div>
+@if ((showPagination && !showBackButton) || (page() > 1 && showBackButton)) {
+  <div class="pagination">
+    <button mat-button (click)="previousPage.emit(page() - 1)" [disabled]="page() <= 1">
+      Prev
+    </button>
+    <span>{{ page() }}</span>
+    <button mat-button (click)="nextPage.emit(page() + 1)">Next</button>
+  </div>
 }

@@ -70,7 +70,7 @@ export class BeersFacade {
     this.filtersService.filters.update((f) => ({
       ...f,
       ...filters,
-      page: resetPage ? 1 : f?.page ?? 1,
+      page: resetPage ? 1 : (f?.page ?? 1),
     }));
     if (resetPage) {
       this.page.set(1);

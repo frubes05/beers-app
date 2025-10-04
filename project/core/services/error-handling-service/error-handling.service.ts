@@ -27,7 +27,7 @@ export class ErrorHandlingService implements HttpInterceptor {
           verticalPosition: 'top',
         });
         return throwError(() => error);
-      })
+      }),
     );
   }
 

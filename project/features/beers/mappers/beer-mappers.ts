@@ -4,7 +4,7 @@ import { sortBeers } from '@features/beers/utils/beer-utils';
 export function mapBeersWithFilters(
   beers: BeerViewModel[],
   filters: BeerFilters | null,
-  favorites: BeerViewModel[]
+  favorites: BeerViewModel[],
 ): BeerViewModel[] {
   if (!filters) return beers;
 

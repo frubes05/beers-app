@@ -15,7 +15,7 @@ export class BeerModalComponent extends ModalComponent {
 
   constructor(
     @Inject('CONTEXT') data: BeerViewModel,
-    @Inject('CLOSE_MODAL') private readonly closeModal: (el: HTMLElement) => void
+    @Inject('CLOSE_MODAL') private readonly closeModal: (el: HTMLElement) => void,
   ) {
     super();
     this.beerData = data;

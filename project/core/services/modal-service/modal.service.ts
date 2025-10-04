@@ -42,7 +42,7 @@ export class ModalService implements OnDestroy {
             useFactory: () => (el: HTMLElement | null) => this.closeModal(el),
           },
         ],
-        this.injector as EnvironmentInjector
+        this.injector as EnvironmentInjector,
       ),
     });
 
@@ -56,7 +56,7 @@ export class ModalService implements OnDestroy {
 
   closeModal(targetElement: HTMLElement | null) {
     const dialogEl = this.modalRef?.location.nativeElement.querySelector(
-      'dialog'
+      'dialog',
     ) as HTMLDialogElement;
     if (dialogEl && !dialogEl.contains(targetElement)) {
       dialogEl.close?.();

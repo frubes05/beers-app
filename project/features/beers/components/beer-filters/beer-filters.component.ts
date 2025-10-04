@@ -38,7 +38,7 @@ export class BeerFiltersComponent implements OnDestroy {
       this.formService.formGroup.valueChanges.pipe(debounceTime(300)).subscribe(() => {
         const value = this.formService.formGroup.getRawValue();
         this.filtersService.updateFilters(value as BeerFiltersType);
-      })
+      }),
     );
   }
 
