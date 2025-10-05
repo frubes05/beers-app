@@ -5,7 +5,7 @@ import { UrlService } from '@core/services/url-service/url.service';
 import { CachingService } from '@core/services/caching-service/caching.service';
 import { distinctUntilChanged } from 'rxjs';
 
-const BASE_URL = 'https://api.adscanner.tv/punkapi/v2/beers';
+export const BASE_URL = 'https://api.adscanner.tv/punkapi/v2/beers';
 
 @Injectable({ providedIn: 'root' })
 export class BeersService {

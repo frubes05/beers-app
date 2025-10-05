@@ -7,15 +7,14 @@ import { FormService } from '@features/beers/services/form.service';
   imports: [MatButton],
   templateUrl: './beer-list-empty.component.html',
   styleUrl: './beer-list-empty.component.scss',
-  providers: [FormService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BeerListEmptyComponent {
   private readonly formService = inject(FormService);
-  @Output() filtersRemoved = new EventEmitter();
+  @Output() resetFiltersClicked = new EventEmitter();
 
   onFiltersRemoved(): void {
-    this.filtersRemoved.emit();
+    this.resetFiltersClicked.emit();
     this.formService.resetFormValues();
   }
 }

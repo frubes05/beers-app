@@ -61,8 +61,7 @@ export class BeersFacade {
 
   constructor() {
     effect(() => {
-      const filters = this.filtersService.filters();
-      this.beersService.fetchBeers(filters!);
+      this.beersService.fetchBeers(this.filtersService.filters()!);
     });
   }
 

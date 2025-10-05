@@ -12,15 +12,10 @@ export class FavoritesService {
   toggleFavorite(beer: BeerViewModel): void {
     const current = this.favorites();
     const exists = current.some((b) => b.id === beer.id);
-
     const updated = exists ? current.filter((b) => b.id !== beer.id) : [...current, beer];
-
+    updated.length === 0
+      ? this.sessionStorageService.remove(key)
+      : this.sessionStorageService.set(key, updated);
     this.favorites.set(updated);
-
-    if (updated.length === 0) {
-      this.sessionStorageService.remove(key);
-    } else {
-      this.sessionStorageService.set(key, updated);
-    }
   }
 }

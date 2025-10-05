@@ -21,4 +21,16 @@ describe('ScrollTo', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should scroll to specific element on click', () => {
+    spyOn(window, 'scrollTo');
+
+    const element = document.createElement('div');
+    Object.defineProperty(element, 'offsetTop', { value: 150 });
+    component.elementToScrollTop = element;
+    component.onClick();
+
+    const args = (window.scrollTo as jasmine.Spy).calls.argsFor(0);
+    expect(args).toEqual([{ top: element.offsetTop ?? 0, left: 0, behavior: 'smooth' }]);
+  });
 });

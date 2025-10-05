@@ -20,9 +20,7 @@ export class FiltersService {
     if (!this.filters()) return;
 
     const updated = { ...this.filters(), ...partial };
-    if (!('page' in partial)) {
-      updated.page = 1;
-    }
+    updated.page = Object.hasOwn(partial, 'page') ? 1 : updated.page;
     this.filters.set(updated);
     this.urlService.navigateWithSearchParams(updated);
   }

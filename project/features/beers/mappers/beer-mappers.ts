@@ -10,18 +10,18 @@ export function mapBeersWithFilters(
 
   const favoriteIds = new Set(favorites.map((b) => b.id));
 
-  let enriched: BeerViewModel[] = beers.map((beer) => ({
+  let completeBeers: BeerViewModel[] = beers.map((beer) => ({
     ...beer,
     isFavorite: favoriteIds.has(beer.id),
   }));
 
   if (filters.favoritesOnly) {
-    enriched = enriched.filter((beer) => beer.isFavorite);
+    completeBeers = completeBeers.filter((beer) => beer.isFavorite);
   }
 
   if (filters.sortBy) {
-    enriched = sortBeers(enriched, filters.sortBy);
+    completeBeers = sortBeers(completeBeers, filters.sortBy);
   }
 
-  return enriched;
+  return completeBeers;
 }

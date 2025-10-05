@@ -3,7 +3,6 @@ import { BeerCardSkeletons } from '@features/beers/components/beer-card/beer-car
 import { BeerCardComponent } from '@features/beers/components/beer-card/beer-card.component';
 import { BeerListEmptyComponent } from '@features/beers/components/beer-list/beer-list-empty/beer-list-empty.component';
 import { ErrorComponent } from '@shared/components/error/error.component';
-import { BeersFacade } from '@features/beers/beers.facade';
 import { BeerViewModel } from '@features/beers/types/types';
 
 @Component({

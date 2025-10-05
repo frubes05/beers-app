@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --code-coverage=false",
+    "test": "ng test --code-coverage=true",
     "lint": "eslint \"project/**/*.ts\" --fix",
     "format": "prettier --write .",
     "prepare": "husky install"

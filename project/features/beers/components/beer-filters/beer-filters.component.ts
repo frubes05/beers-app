@@ -31,7 +31,7 @@ export class BeerFiltersComponent implements OnDestroy {
   constructor() {
     effect(() => {
       const filters = this.filtersService.filters();
-      filters ? this.formService.updateFormValues(filters) : this.formService.resetFormValues();
+      this.formService.updateFormValues(filters);
     });
 
     this.subscription.add(

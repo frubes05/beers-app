@@ -7,7 +7,7 @@
 } @else if (error) {
   <app-error (retryClicked)="retryClicked.emit()" />
 } @else if (beers.length === 0) {
-  <app-beer-list-empty (filtersRemoved)="resetFiltersClicked.emit()" />
+  <app-beer-list-empty (resetFiltersClicked)="resetFiltersClicked.emit()" />
 } @else {
   <ul class="beers-list">
     @for (beer of beers; track beer.id) {

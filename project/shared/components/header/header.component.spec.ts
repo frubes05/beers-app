@@ -27,4 +27,17 @@ describe('Header', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit on click', () => {
+    const component = fixture.componentInstance;
+    spyOn(component.homeClicked, 'emit');
+
+    const nativeElement = fixture.nativeElement;
+    const routerLink = nativeElement.querySelector('a');
+    routerLink.dispatchEvent(new Event('click'));
+
+    fixture.detectChanges();
+
+    expect(component.homeClicked.emit).toHaveBeenCalledOnceWith();
+  });
 });
