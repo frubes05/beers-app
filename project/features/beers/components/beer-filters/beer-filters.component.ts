@@ -7,7 +7,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { debounceTime, tap } from 'rxjs';
 import { FiltersService } from '@features/beers/services/filters.service';
 import { FormService } from '@features/beers/services/form.service';
-import { BeerFilters as BeerFiltersType } from '@features/beers/types/types';
+import { IBeerFilters } from '@features/beers/types/types';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -32,7 +32,7 @@ export class BeerFiltersComponent {
     this.formService.formGroup.valueChanges.pipe(
       debounceTime(300),
       tap((formValues) => {
-        this.filtersService.updateFilters(formValues as BeerFiltersType);
+        this.filtersService.updateFilters(formValues as IBeerFilters);
       }),
     ),
   );

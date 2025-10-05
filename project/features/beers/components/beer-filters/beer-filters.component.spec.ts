@@ -4,26 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { BeerFiltersComponent } from '@features/beers/components/beer-filters/beer-filters.component';
 import { UrlService } from '@root/core/services/url-service/url.service';
 import { FiltersService } from '@features/beers/services/filters.service';
-import { BeerFilters } from '@features/beers/types/types';
+import { IBeerFilters } from '@features/beers/types/types';
 import { FormService } from '@features/beers/services/form.service';
-import { FormControl, FormGroup } from '@angular/forms';
-
-const realFormGroup = new FormGroup({
-  beer_name: new FormControl('', { nonNullable: true, updateOn: 'blur' }),
-  abv_gt: new FormControl(0, { nonNullable: true, updateOn: 'blur' }),
-  abv_lt: new FormControl(15, { nonNullable: true, updateOn: 'blur' }),
-  sortBy: new FormControl('abv:asc', { nonNullable: true }),
-  favoritesOnly: new FormControl(false, { nonNullable: true }),
-});
-
-export const mockFilters: BeerFilters = {
-  beer_name: 'ipa',
-  abv_lt: 15,
-  abv_gt: 0,
-  sortBy: 'abv:asc',
-  favoritesOnly: false,
-  page: 1,
-};
+import { mockFilters, mockFormGroup } from '../../mocks/beers-mock';
 
 describe('BeerFilters', () => {
   let component: BeerFiltersComponent;
@@ -57,7 +40,7 @@ describe('BeerFilters', () => {
         {
           provide: FormService,
           useValue: {
-            formGroup: realFormGroup,
+            formGroup: mockFormGroup,
             updateFormValues: jasmine.createSpy('updateFormValues'),
             resetFormValues: jasmine.createSpy('resetFormValues'),
           },
@@ -82,12 +65,12 @@ describe('BeerFilters', () => {
   });
 
   it('should update filters when form value has changed', async () => {
-    realFormGroup.patchValue({ ...realFormGroup.getRawValue(), beer_name: 'ipa' });
+    mockFormGroup.patchValue({ ...mockFormGroup.getRawValue(), beer_name: 'ipa' });
 
     await new Promise((resolve) => setTimeout(resolve, 300));
 
     expect(filtersService.updateFilters).toHaveBeenCalledOnceWith({
-      ...(realFormGroup.getRawValue() as BeerFilters),
+      ...(mockFormGroup.getRawValue() as IBeerFilters),
       beer_name: 'ipa',
     });
   });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BeerFilters } from '@features/beers/types/types';
+import { IBeerFilters } from '@features/beers/types/types';
 import { DEFAULT_FILTERS } from '@root/app.constants';
 
 @Injectable({ providedIn: 'root' })
@@ -13,7 +13,7 @@ export class FormService {
     favoritesOnly: new FormControl(false, { nonNullable: true }),
   });
 
-  updateFormValues(values: BeerFilters): void {
+  updateFormValues(values: IBeerFilters): void {
     this.formGroup.patchValue(values, {
       emitEvent: false,
     });

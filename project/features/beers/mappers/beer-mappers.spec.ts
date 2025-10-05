@@ -1,14 +1,14 @@
 import { mapBeersWithFilters } from '@features/beers/mappers/beer-mappers';
-import { BeerViewModel } from '@features/beers/types/types';
+import { IBeerViewModel } from '@features/beers/types/types';
 
 describe('mapBeersWithFilters', () => {
-  const beers: BeerViewModel[] = [
-    { id: 1, name: 'IPA' } as BeerViewModel,
-    { id: 2, name: 'Stout' } as BeerViewModel,
-    { id: 3, name: 'Lager' } as BeerViewModel,
+  const beers: IBeerViewModel[] = [
+    { id: 1, name: 'IPA' } as IBeerViewModel,
+    { id: 2, name: 'Stout' } as IBeerViewModel,
+    { id: 3, name: 'Lager' } as IBeerViewModel,
   ];
 
-  const favorites: BeerViewModel[] = [{ id: 2, name: 'Stout' } as BeerViewModel];
+  const favorites: IBeerViewModel[] = [{ id: 2, name: 'Stout' } as IBeerViewModel];
 
   it('should sort beers by name desc when sortBy is "name:desc"', () => {
     const filters = {

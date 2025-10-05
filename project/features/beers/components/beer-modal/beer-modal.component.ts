@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ModalComponent } from '@shared/components/modal/modal.component';
-import { BeerViewModel } from '@features/beers/types/types';
+import { IBeerViewModel } from '@features/beers/types/types';
 import { FallbackImageDirective } from '@root/shared/directives/fallback/fallback.directive';
 import * as AppConstants from '@root/app.constants';
 @Component({
@@ -12,11 +12,11 @@ import * as AppConstants from '@root/app.constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BeerModalComponent extends ModalComponent {
-  protected beerData!: BeerViewModel;
+  protected beerData!: IBeerViewModel;
   protected fallbackImage = AppConstants.FALLBACK_IMAGE;
 
   constructor(
-    @Inject('CONTEXT') data: BeerViewModel,
+    @Inject('CONTEXT') data: IBeerViewModel,
     @Inject('CLOSE_MODAL') private readonly closeModal: (el: HTMLElement) => void,
   ) {
     super();

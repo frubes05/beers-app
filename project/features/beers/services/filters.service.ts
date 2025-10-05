@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { BeerFilters } from '@features/beers/types/types';
+import { IBeerFilters } from '@features/beers/types/types';
 import { UrlService } from '@core/services/url-service/url.service';
 import { DEFAULT_FILTERS } from '@root/app.constants';
 
@@ -7,16 +7,16 @@ import { DEFAULT_FILTERS } from '@root/app.constants';
 export class FiltersService {
   private readonly urlService = inject(UrlService);
 
-  readonly filters = signal<BeerFilters>(
+  readonly filters = signal<IBeerFilters>(
     (() => {
       const urlParams = this.urlService.getObjectFromSearchParams(
         new URLSearchParams(window.location.search),
-      ) as Partial<BeerFilters>;
+      ) as Partial<IBeerFilters>;
       return { ...DEFAULT_FILTERS, ...urlParams };
     })(),
   );
 
-  updateFilters(partial: BeerFilters) {
+  updateFilters(partial: IBeerFilters) {
     if (!this.filters()) return;
 
     const updated = { ...this.filters(), ...partial };

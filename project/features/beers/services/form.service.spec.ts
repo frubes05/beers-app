@@ -1,9 +1,9 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { mockFilters } from '@features/beers/components/beer-filters/beer-filters.component.spec';
 import { FormService } from '@features/beers/services/form.service';
-import { BeerFilters } from '@features/beers/types/types';
+import { IBeerFilters } from '@features/beers/types/types';
 import { DEFAULT_FILTERS } from '@root/app.constants';
+import { mockFilters } from '../mocks/beers-mock';
 
 describe('FormService', () => {
   let formService: FormService;
@@ -23,7 +23,7 @@ describe('FormService', () => {
   });
 
   it('should update form values with correct values', () => {
-    formService.updateFormValues(filtersWithoutPage as BeerFilters);
+    formService.updateFormValues(filtersWithoutPage as IBeerFilters);
 
     expect(formService.formGroup.getRawValue()).toEqual(filtersWithoutPage);
   });

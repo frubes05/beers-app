@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, Signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { BeerFilters, BeerViewModel } from '@features/beers/types/types';
+import { IBeerFilters, IBeerViewModel } from '@features/beers/types/types';
 import { UrlService } from '@core/services/url-service/url.service';
 import { CachingService } from '@core/services/caching-service/caching.service';
 import { switchMap, tap, catchError, of } from 'rxjs';
@@ -17,7 +17,7 @@ export class BeersService {
 
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
-  beers!: Signal<BeerViewModel[]>;
+  beers!: Signal<IBeerViewModel[]>;
 
   constructor() {
     const filters$ = toObservable(this.filtersService.filters);
@@ -27,22 +27,22 @@ export class BeersService {
         this.loading.set(true);
         this.error.set(null);
       }),
-      switchMap((filters: BeerFilters) => {
+      switchMap((filters: IBeerFilters) => {
         const params = this.urlService.getSearchParamsFromObject(filters);
         const urlWithParams = `${BASE_URL}?${params.toString()}`;
 
-        const cached = this.cachingService.get<BeerViewModel[]>(urlWithParams);
+        const cached = this.cachingService.get<IBeerViewModel[]>(urlWithParams);
         if (cached) {
           this.loading.set(false);
           return of(cached);
         }
 
-        return this.http.get<BeerViewModel[]>(BASE_URL, { params }).pipe(
+        return this.http.get<IBeerViewModel[]>(BASE_URL, { params }).pipe(
           tap((data) => this.cachingService.set(urlWithParams, data)),
           catchError(() => {
             this.error.set('Failed to load beers');
             this.loading.set(false);
-            return of<BeerViewModel[]>([]);
+            return of<IBeerViewModel[]>([]);
           }),
         );
       }),

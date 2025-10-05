@@ -1,9 +1,9 @@
-import { BeerViewModel } from '@features/beers/types/types';
+import { IBeerViewModel } from '@features/beers/types/types';
 
-export function sortBeers(beers: BeerViewModel[], sortBy: string | undefined): BeerViewModel[] {
+export function sortBeers(beers: IBeerViewModel[], sortBy: string | undefined): IBeerViewModel[] {
   if (!sortBy) return beers;
 
-  const [key, direction] = sortBy.split(':') as [keyof BeerViewModel, 'asc' | 'desc'];
+  const [key, direction] = sortBy.split(':') as [keyof IBeerViewModel, 'asc' | 'desc'];
 
   return beers.sort((a, b) => {
     const one = a[key];

@@ -36,11 +36,11 @@
 
   &::-webkit-scrollbar-thumb {
     padding: 0;
-    background-color: $secondary-color;
+    background-color: $secondary-color-dark;
   }
 
   &::-webkit-scrollbar-track {
     border: 1px solid $secondary-color-dark;
-    background-color: $secondary-color;
+    background-color: $secondary-color-light;
   }
 }

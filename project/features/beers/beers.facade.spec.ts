@@ -5,9 +5,8 @@ import { BeersService } from '@features/beers/services/beers.service';
 import { FavoritesService } from '@features/beers/services/favorites.service';
 import { UrlService } from '@core/services/url-service/url.service';
 import { FiltersService } from '@features/beers/services/filters.service';
-import { BeerFilters, BeerViewModel } from '@features/beers/types/types';
-import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
-import { mockFilters } from '@features/beers/components/beer-filters/beer-filters.component.spec';
+import { IBeerFilters, IBeerViewModel } from '@features/beers/types/types';
+import { mockBeer, mockFilters } from './mocks/beers-mock';
 
 describe('BeersFacade', () => {
   let facade: BeersFacade;
@@ -62,7 +61,7 @@ describe('BeersFacade', () => {
   });
 
   it('should call updateFilters correctly and reset page when resetPage is true', () => {
-    const newFilters = { beer_name: 'lager' } as BeerFilters;
+    const newFilters = { beer_name: 'lager' } as IBeerFilters;
 
     facade.updateFilters(newFilters, true);
 
@@ -72,7 +71,7 @@ describe('BeersFacade', () => {
   });
 
   it('should update filters without resetting page when resetPage is false', () => {
-    const newFilters = { abv_lt: 10 } as BeerFilters;
+    const newFilters = { abv_lt: 10 } as IBeerFilters;
 
     facade.updateFilters(newFilters, false);
 
@@ -121,7 +120,7 @@ describe('BeersFacade', () => {
 
   it('should compute showBackButton correctly', () => {
     filtersService.filters.set({ ...mockFilters, favoritesOnly: true });
-    favoritesService.favorites.set([{ id: 99 } as BeerViewModel]);
+    favoritesService.favorites.set([{ id: 99 } as IBeerViewModel]);
 
     expect(facade.showBackButton()).toBeTrue();
   });

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { BeerViewModel } from '@features/beers/types/types';
+import { IBeerViewModel } from '@features/beers/types/types';
 import { FallbackImageDirective } from '@shared/directives/fallback/fallback.directive';
 import { CardComponent } from '@shared/components/card/card.component';
 
@@ -13,15 +13,15 @@ import { CardComponent } from '@shared/components/card/card.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BeerCardComponent {
-  @Input() beer!: BeerViewModel;
-  @Output() favoritesClicked = new EventEmitter<BeerViewModel>();
-  @Output() detailsClicked = new EventEmitter<BeerViewModel>();
+  @Input() beer!: IBeerViewModel;
+  @Output() favoritesClicked = new EventEmitter<IBeerViewModel>();
+  @Output() detailsClicked = new EventEmitter<IBeerViewModel>();
 
-  onFavoritesClick(beer: BeerViewModel) {
+  onFavoritesClick(beer: IBeerViewModel) {
     this.favoritesClicked.emit(beer);
   }
 
-  onDetailsClick(beer: BeerViewModel) {
+  onDetailsClick(beer: IBeerViewModel) {
     this.detailsClicked.emit(beer);
   }
 }

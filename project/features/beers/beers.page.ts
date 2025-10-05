@@ -6,7 +6,7 @@ import { PaginationComponent } from '@shared/components/pagination/pagination.co
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { FooterComponent } from '@shared/components/footer/footer.component';
 import { ScrollToComponent } from '@shared/components/scroll-to/scroll-to.component';
-import { BeerViewModel } from '@features/beers/types/types';
+import { IBeerViewModel } from '@features/beers/types/types';
 import { ModalService } from '@core/services/modal-service/modal.service';
 import { BeerModalComponent } from '@features/beers/components/beer-modal/beer-modal.component';
 
@@ -28,7 +28,7 @@ export class BeersPage {
   readonly modalsService = inject(ModalService);
   readonly viewContainerRef = inject(ViewContainerRef);
 
-  handleDetailsClicked(beer: BeerViewModel) {
+  handleDetailsClicked(beer: IBeerViewModel) {
     this.modalsService.openModal({
       data: beer,
       viewContainerRef: this.viewContainerRef,

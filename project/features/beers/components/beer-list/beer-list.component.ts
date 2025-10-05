@@ -3,7 +3,7 @@ import { BeerCardSkeletons } from '@features/beers/components/beer-card/beer-car
 import { BeerCardComponent } from '@features/beers/components/beer-card/beer-card.component';
 import { BeerListEmptyComponent } from '@features/beers/components/beer-list/beer-list-empty/beer-list-empty.component';
 import { ErrorComponent } from '@shared/components/error/error.component';
-import { BeerViewModel } from '@features/beers/types/types';
+import { IBeerViewModel } from '@features/beers/types/types';
 
 @Component({
   selector: 'app-beer-list',
@@ -15,14 +15,14 @@ import { BeerViewModel } from '@features/beers/types/types';
 export class BeerListComponent {
   @Input({ required: true }) error!: string | null;
   @Input({ required: true }) loading!: boolean;
-  @Input({ required: true }) beers!: Array<BeerViewModel>;
+  @Input({ required: true }) beers!: Array<IBeerViewModel>;
 
-  @Output() detailsClicked = new EventEmitter<BeerViewModel>();
-  @Output() savedFavoriteBeer = new EventEmitter<BeerViewModel>();
+  @Output() detailsClicked = new EventEmitter<IBeerViewModel>();
+  @Output() savedFavoriteBeer = new EventEmitter<IBeerViewModel>();
   @Output() retryClicked = new EventEmitter();
   @Output() resetFiltersClicked = new EventEmitter();
 
-  handleDetailsClicked(event: BeerViewModel): void {
+  handleDetailsClicked(event: IBeerViewModel): void {
     this.detailsClicked.emit(event);
   }
 }

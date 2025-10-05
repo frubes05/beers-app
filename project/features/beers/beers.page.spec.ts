@@ -4,10 +4,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { BeersPage } from '@features/beers/beers.page';
 import { UrlService } from '@root/core/services/url-service/url.service';
-import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
 import { BeerModalComponent } from '@features/beers/components/beer-modal/beer-modal.component';
 import { BeersFacade } from '@features/beers/beers.facade';
 import { ModalService } from '@root/core/services/modal-service/modal.service';
+import { mockBeer } from './mocks/beers-mock';
 
 describe('Beers', () => {
   let component: BeersPage;

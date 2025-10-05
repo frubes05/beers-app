@@ -3,7 +3,7 @@ import { BeersService } from '@features/beers/services/beers.service';
 import { FavoritesService } from '@features/beers/services/favorites.service';
 import { UrlService } from '@core/services/url-service/url.service';
 import { mapBeersWithFilters } from '@features/beers/mappers/beer-mappers';
-import { BeerFilters, BeerViewModel } from '@features/beers/types/types';
+import { IBeerFilters, IBeerViewModel } from '@features/beers/types/types';
 import { FiltersService } from '@features/beers/services/filters.service';
 import { DEFAULT_FILTERS } from '@root/app.constants';
 
@@ -23,7 +23,7 @@ export class BeersFacade {
   readonly filters = this.filtersService.filters;
   readonly favorites = this.favoritesService.favorites;
 
-  readonly beers = computed<BeerViewModel[]>(() => {
+  readonly beers = computed<IBeerViewModel[]>(() => {
     const beers = this.beersService.beers();
     const filters = this.filters();
     const favorites = this.favorites();
@@ -50,7 +50,7 @@ export class BeersFacade {
     );
   });
 
-  updateFilters(filters: BeerFilters, resetPage = true) {
+  updateFilters(filters: IBeerFilters, resetPage = true) {
     this.filters.update((f) => ({
       ...f,
       ...filters,
@@ -68,7 +68,7 @@ export class BeersFacade {
     this.page.set(page);
 
     this.filters.update((f) => ({
-      ...(f as BeerFilters),
+      ...(f as IBeerFilters),
       page,
     }));
 
@@ -89,7 +89,7 @@ export class BeersFacade {
     this.urlService.navigateWithoutParams(true);
   }
 
-  saveFavoriteBeer(beer: BeerViewModel) {
+  saveFavoriteBeer(beer: IBeerViewModel) {
     this.favoritesService.toggleFavorite(beer);
   }
 }

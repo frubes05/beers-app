@@ -1,11 +1,11 @@
 import { sortBeers } from '@features/beers/utils/beer-utils';
-import { BeerViewModel } from '@features/beers/types/types';
+import { IBeerViewModel } from '@features/beers/types/types';
 
 describe('sortBeers', () => {
-  const beers: BeerViewModel[] = [
-    { id: 2, name: 'Stout', abv: 8.0 } as BeerViewModel,
-    { id: 1, name: 'IPA', abv: 6.5 } as BeerViewModel,
-    { id: 3, name: 'Lager', abv: 4.8 } as BeerViewModel,
+  const beers: IBeerViewModel[] = [
+    { id: 2, name: 'Stout', abv: 8.0 } as IBeerViewModel,
+    { id: 1, name: 'IPA', abv: 6.5 } as IBeerViewModel,
+    { id: 3, name: 'Lager', abv: 4.8 } as IBeerViewModel,
   ];
 
   it('should return original array if sortBy is undefined', () => {
@@ -35,8 +35,8 @@ describe('sortBeers', () => {
 
   it('should do nothing if sortBy field is of an unrecognized type', () => {
     const weirdBeers = [
-      { id: 1, name: 'IPA', abv: 6.5, something: {} } as BeerViewModel & { something: any },
-      { id: 2, name: 'Stout', abv: 8.0, something: {} } as BeerViewModel & { something: any },
+      { id: 1, name: 'IPA', abv: 6.5, something: {} } as IBeerViewModel & { something: any },
+      { id: 2, name: 'Stout', abv: 8.0, something: {} } as IBeerViewModel & { something: any },
     ];
 
     const result = sortBeers([...weirdBeers], 'something:asc');
