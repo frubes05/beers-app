@@ -1,7 +1,7 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BeerCardComponent } from '@features/beers/components/beer-card/beer-card.component';
-import { mockBeer } from '../../mocks/beers-mock';
+import { mockBeer } from '@features/beers/mocks/beers-mock';
 
 describe('BeerCard', () => {
   let component: BeerCardComponent;

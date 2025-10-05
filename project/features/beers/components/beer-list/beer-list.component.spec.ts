@@ -2,7 +2,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BeerListComponent } from '@features/beers/components/beer-list/beer-list.component';
 import { UrlService } from '@root/core/services/url-service/url.service';
-import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
+import { mockBeer } from '@features/beers/mocks/beers-mock';
 import { By } from '@angular/platform-browser';
 import { BeerCardComponent } from '@features/beers/components/beer-card/beer-card.component';
 import { ErrorComponent } from '@root/shared/components/error/error.component';

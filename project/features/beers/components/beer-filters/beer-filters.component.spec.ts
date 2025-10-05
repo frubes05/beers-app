@@ -6,7 +6,7 @@ import { UrlService } from '@root/core/services/url-service/url.service';
 import { FiltersService } from '@features/beers/services/filters.service';
 import { IBeerFilters } from '@features/beers/types/types';
 import { FormService } from '@features/beers/services/form.service';
-import { mockFilters, mockFormGroup } from '../../mocks/beers-mock';
+import { mockFilters, mockFormGroup } from '@features/beers/mocks/beers-mock';
 
 describe('BeerFilters', () => {
   let component: BeerFiltersComponent;

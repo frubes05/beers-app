@@ -7,7 +7,7 @@ import { UrlService } from '@root/core/services/url-service/url.service';
 import { BeerModalComponent } from '@features/beers/components/beer-modal/beer-modal.component';
 import { BeersFacade } from '@features/beers/beers.facade';
 import { ModalService } from '@root/core/services/modal-service/modal.service';
-import { mockBeer } from './mocks/beers-mock';
+import { mockBeer } from '@features/beers/mocks/beers-mock';
 
 describe('Beers', () => {
   let component: BeersPage;

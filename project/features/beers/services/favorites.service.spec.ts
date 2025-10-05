@@ -1,6 +1,6 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
+import { mockBeer } from '@features/beers/mocks/beers-mock';
 import { FavoritesService } from '@features/beers/services/favorites.service';
 import { SessionStorageService } from '@root/core/services/session-storage-service/session-storage.service';
 

@@ -6,7 +6,7 @@ import { FavoritesService } from '@features/beers/services/favorites.service';
 import { UrlService } from '@core/services/url-service/url.service';
 import { FiltersService } from '@features/beers/services/filters.service';
 import { IBeerFilters, IBeerViewModel } from '@features/beers/types/types';
-import { mockBeer, mockFilters } from './mocks/beers-mock';
+import { mockBeer, mockFilters } from '@features/beers/mocks/beers-mock';
 
 describe('BeersFacade', () => {
   let facade: BeersFacade;
