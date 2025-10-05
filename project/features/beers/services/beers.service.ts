@@ -17,12 +17,9 @@ export class BeersService {
 
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
-  beers!: Signal<IBeerViewModel[]>;
 
-  constructor() {
-    const filters$ = toObservable(this.filtersService.filters);
-
-    const beers$ = filters$.pipe(
+  readonly beers = toSignal(
+    this.filtersService.filters$.pipe(
       tap(() => {
         this.loading.set(true);
         this.error.set(null);
@@ -47,8 +44,7 @@ export class BeersService {
         );
       }),
       tap(() => this.loading.set(false)),
-    );
-
-    this.beers = toSignal(beers$, { initialValue: [] });
-  }
+    ),
+    { initialValue: [] },
+  );
 }

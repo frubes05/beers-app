@@ -51,10 +51,11 @@ export class BeersFacade {
   });
 
   updateFilters(filters: IBeerFilters, resetPage = true) {
-    this.filters.update((f) => ({
-      ...f,
+    this.filtersService.isReset.set(false);
+    this.filters.update((currentFilters) => ({
+      ...currentFilters,
       ...filters,
-      page: resetPage ? 1 : (f?.page ?? 1),
+      page: resetPage ? 1 : (currentFilters?.page ?? 1),
     }));
 
     if (resetPage) {
@@ -66,9 +67,10 @@ export class BeersFacade {
 
   goToPage(page: number) {
     this.page.set(page);
+    this.filtersService.isReset.set(false);
 
-    this.filters.update((f) => ({
-      ...(f as IBeerFilters),
+    this.filters.update((currentFilters) => ({
+      ...(currentFilters as IBeerFilters),
       page,
     }));
 
@@ -79,11 +81,13 @@ export class BeersFacade {
   }
 
   retry() {
+    this.filtersService.isReset.set(false);
     const currentFilters = this.filters();
     this.updateFilters(currentFilters, false);
   }
 
   resetFilters() {
+    this.filtersService.isReset.set(true);
     this.filters.set(DEFAULT_FILTERS);
     this.page.set(1);
     this.urlService.navigateWithoutParams(true);

@@ -36,6 +36,7 @@ describe('BeersFacade', () => {
           provide: FiltersService,
           useValue: jasmine.createSpyObj('FiltersService', [], {
             filters: signal(mockFilters),
+            isReset: signal(false),
           }),
         },
         {

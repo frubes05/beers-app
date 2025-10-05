@@ -6,39 +6,54 @@ import { UrlService } from '@root/core/services/url-service/url.service';
 import { FiltersService } from '@features/beers/services/filters.service';
 import { CachingService } from '@root/core/services/caching-service/caching.service';
 import { BASE_URL } from '@root/app.constants';
-import { of, throwError } from 'rxjs';
+import { of, Subject, throwError } from 'rxjs';
 import { mockFilters, mockBeer, mockParams } from '@features/beers/mocks/beers-mock';
+import { IBeerFilters } from '@features/beers/types/types';
 
 describe('BeersService', () => {
   let beersService: BeersService;
-  let urlService: UrlService;
   let httpClient: HttpClient;
   let cachingService: CachingService;
+  let filtersSubject: Subject<IBeerFilters>;
 
   beforeEach(() => {
+    filtersSubject = new Subject();
+
     TestBed.configureTestingModule({
       providers: [
-        { provide: HttpClient, useValue: jasmine.createSpyObj('HttpClient', ['get']) },
+        {
+          provide: HttpClient,
+          useValue: {
+            get: jasmine.createSpy('get').and.returnValue(of([mockBeer])),
+          },
+        },
         {
           provide: UrlService,
-          useValue: jasmine.createSpyObj('UrlService', ['getSearchParamsFromObject']),
+          useValue: {
+            getSearchParamsFromObject: jasmine
+              .createSpy('getSearchParamsFromObject')
+              .and.returnValue(mockParams),
+          },
         },
         {
           provide: CachingService,
-          useValue: jasmine.createSpyObj('CachingService', ['get', 'set']),
+          useValue: {
+            get: jasmine.createSpy('get').and.returnValue(null),
+            set: jasmine.createSpy('set'),
+          },
         },
         provideZonelessChangeDetection(),
         {
           provide: FiltersService,
           useValue: {
             filters: () => mockFilters,
+            filters$: filtersSubject.asObservable(),
           },
         },
       ],
     });
 
     beersService = TestBed.inject(BeersService);
-    urlService = TestBed.inject(UrlService);
     httpClient = TestBed.inject(HttpClient);
     cachingService = TestBed.inject(CachingService);
   });
@@ -48,9 +63,10 @@ describe('BeersService', () => {
   });
 
   it('should fetch beers when not cached', async () => {
-    (cachingService as any).get.and.returnValue(null);
-    (httpClient as any).get.and.returnValue(of([mockBeer]));
-    (urlService as any).getSearchParamsFromObject.and.returnValue(mockParams);
+    (cachingService.get as any).and.returnValue(null);
+    (httpClient.get as any).and.returnValue(of([mockBeer]));
+
+    filtersSubject.next(mockFilters);
 
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -66,8 +82,9 @@ describe('BeersService', () => {
   });
 
   it('should return beers from cache if available', async () => {
-    (cachingService as any).get.and.returnValue([mockBeer]);
-    (urlService as any).getSearchParamsFromObject.and.returnValue(mockParams);
+    (cachingService.get as any).and.returnValue([mockBeer]);
+
+    filtersSubject.next(mockFilters);
 
     await new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -79,9 +96,10 @@ describe('BeersService', () => {
   });
 
   it('should handle error during fetch', async () => {
-    (cachingService as any).get.and.returnValue(null);
-    (httpClient as any).get.and.returnValue(throwError(() => new Error('Failed')));
-    (urlService as any).getSearchParamsFromObject.and.returnValue(mockParams);
+    (cachingService.get as any).and.returnValue(null);
+    (httpClient.get as any).and.returnValue(throwError(() => new Error('Failed')));
+
+    filtersSubject.next(mockFilters);
 
     await new Promise((resolve) => setTimeout(resolve, 0));
 
