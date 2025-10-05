@@ -1,9 +1,10 @@
+import { FALLBACK_IMAGE } from '@root/app.constants';
 import { FallbackImageDirective } from '@shared/directives/fallback/fallback.directive';
 
 describe('FallbackImageDirective', () => {
   let fallbackImageDirective: FallbackImageDirective;
   let img: HTMLImageElement;
-  let fallbackImage = 'assets/placeholder-beer.png';
+  let fallbackImage = FALLBACK_IMAGE;
   let errorImage = 'error-img.jpg';
 
   beforeEach(() => {

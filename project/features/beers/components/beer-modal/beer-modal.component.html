@@ -16,7 +16,7 @@
     <img
       [src]="beerData.image_url"
       [alt]="beerData.name"
-      fallback="assets/placeholder-beer.png"
+      [fallback]="fallbackImage"
       loading="lazy"
       class="beer-modal__image"
     />

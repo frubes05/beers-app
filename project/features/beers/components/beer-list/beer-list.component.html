@@ -5,7 +5,7 @@
     }
   </ul>
 } @else if (error) {
-  <app-error (retryClicked)="retryClicked.emit()" />
+  <app-error (retryClicked)="retryClicked.emit()" [error]="error" />
 } @else if (beers.length === 0) {
   <app-beer-list-empty (resetFiltersClicked)="resetFiltersClicked.emit()" />
 } @else {

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { FiltersService } from '@features/beers/services/filters.service';
 import { UrlService } from '@root/core/services/url-service/url.service';
 import { mockFilters } from '@features/beers/components/beer-filters/beer-filters.component.spec';
-import { DEFAULT_FILTERS } from '@features/beers/beers.facade';
+import { DEFAULT_FILTERS } from '@root/app.constants';
 
 describe('FiltersService', () => {
   let filtersService: FiltersService;

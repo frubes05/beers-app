@@ -1,9 +1,7 @@
-@if (error$ | async; as error) {
-  <div class="error" role="alert">
-    <p>An error occured.</p>
-    <span>
-      {{ error }}
-    </span>
-    <button matButton (click)="retry()">Try again</button>
-  </div>
-}
+<div class="error" role="alert">
+  <p>An error occured.</p>
+  <span>
+    {{ error }}
+  </span>
+  <button matButton (click)="retry()">Try again</button>
+</div>

@@ -1,6 +1,5 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BeerCardSkeletons } from '@features/beers/components/beer-card/beer-card-skeletons/beer-card-skeletons.component';
 
 describe('BeerCardSkeletons', () => {

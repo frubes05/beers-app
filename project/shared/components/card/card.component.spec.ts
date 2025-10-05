@@ -1,6 +1,5 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CardComponent } from '@shared/components/card/card.component';
 
 describe('Card', () => {

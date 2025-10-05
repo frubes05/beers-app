@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { BASE_URL, BeersService } from '@features/beers/services/beers.service';
+import { BeersService } from '@features/beers/services/beers.service';
 import { UrlService } from '@root/core/services/url-service/url.service';
 import { mockFilters } from '@features/beers/components/beer-filters/beer-filters.component.spec';
 import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
 import { CachingService } from '@root/core/services/caching-service/caching.service';
+import { BASE_URL } from '@root/app.constants';
 
 describe('BeersService', () => {
   let beersService: BeersService;
@@ -48,7 +49,6 @@ describe('BeersService', () => {
   });
 
   it('should fetch new beers if nothing is cached', () => {
-    beersService.fetchBeers(mockFilters);
     expect(httpClient.get).toHaveBeenCalledOnceWith(BASE_URL, {
       params: { name: 'Beer_1', id: 10, isFavorite: false },
     });
@@ -56,8 +56,6 @@ describe('BeersService', () => {
 
   it('should fetch new beers if nothing is cached', () => {
     (cachingService as any).get = jasmine.createSpy('get').and.returnValue(mockBeer);
-
-    beersService.fetchBeers(mockFilters);
 
     expect(beersService.beers()).toEqual(Object(mockBeer));
     expect(httpClient.get).not.toHaveBeenCalledOnceWith(BASE_URL, {
@@ -70,8 +68,6 @@ describe('BeersService', () => {
     (httpClient as any).get = jasmine.createSpy('get').and.returnValue({
       pipe: () => ({ subscribe: (obs: any) => obs.error() }),
     });
-
-    beersService.fetchBeers(mockFilters);
 
     expect(beersService.error()).toBe('Failed to load beers');
     expect(beersService.beers()).toEqual([]);

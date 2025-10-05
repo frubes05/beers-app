@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ModalComponent } from '@shared/components/modal/modal.component';
 import { BeerViewModel } from '@features/beers/types/types';
 import { FallbackImageDirective } from '@root/shared/directives/fallback/fallback.directive';
+import * as AppConstants from '@root/app.constants';
 @Component({
   selector: 'app-beer-modal',
   standalone: true,
@@ -12,6 +13,7 @@ import { FallbackImageDirective } from '@root/shared/directives/fallback/fallbac
 })
 export class BeerModalComponent extends ModalComponent {
   protected beerData!: BeerViewModel;
+  protected fallbackImage = AppConstants.FALLBACK_IMAGE;
 
   constructor(
     @Inject('CONTEXT') data: BeerViewModel,

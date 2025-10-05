@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { BeerFilters } from '@features/beers/types/types';
 import { UrlService } from '@core/services/url-service/url.service';
-import { DEFAULT_FILTERS } from '@features/beers/beers.facade';
+import { DEFAULT_FILTERS } from '@root/app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class FiltersService {

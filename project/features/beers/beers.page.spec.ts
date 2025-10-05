@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-
 import { BeersPage } from '@features/beers/beers.page';
 import { UrlService } from '@root/core/services/url-service/url.service';
 import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';

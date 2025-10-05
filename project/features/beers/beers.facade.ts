@@ -1,19 +1,11 @@
-import { inject, Injectable, signal, computed, effect } from '@angular/core';
+import { inject, Injectable, signal, computed } from '@angular/core';
 import { BeersService } from '@features/beers/services/beers.service';
 import { FavoritesService } from '@features/beers/services/favorites.service';
 import { UrlService } from '@core/services/url-service/url.service';
 import { mapBeersWithFilters } from '@features/beers/mappers/beer-mappers';
 import { BeerFilters, BeerViewModel } from '@features/beers/types/types';
 import { FiltersService } from '@features/beers/services/filters.service';
-
-export const DEFAULT_FILTERS: BeerFilters = {
-  beer_name: '',
-  abv_gt: 0,
-  abv_lt: 15,
-  sortBy: 'name:asc',
-  favoritesOnly: false,
-  page: 1,
-};
+import { DEFAULT_FILTERS } from '@root/app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class BeersFacade {
@@ -28,68 +20,71 @@ export class BeersFacade {
   readonly loading = this.beersService.loading;
   readonly error = this.beersService.error;
 
-  readonly filters = this.filtersService.filters();
-  readonly favorites = this.favoritesService.favorites();
+  readonly filters = this.filtersService.filters;
+  readonly favorites = this.favoritesService.favorites;
 
   readonly beers = computed<BeerViewModel[]>(() => {
     const beers = this.beersService.beers();
-    const filters = this.filtersService.filters();
-    const favorites = this.favoritesService.favorites();
+    const filters = this.filters();
+    const favorites = this.favorites();
 
     return mapBeersWithFilters(beers, filters, favorites);
   });
 
   readonly showPagination = computed<boolean>(() => {
-    const error = Boolean(this.beersService.error());
+    const error = Boolean(this.error());
     const beers = this.beersService.beers();
 
     return !error || beers.length > 0;
   });
 
   readonly showBackButton = computed<boolean>(() => {
-    const filters = this.filtersService.filters();
+    const filters = this.filters();
     const beers = this.beersService.beers();
-    const favorites = this.favoritesService.favorites();
-    const favoriteIds = favorites.map((b) => b.id);
+    const favoriteIds = this.favorites().map((b) => b.id);
 
     return (
       filters.favoritesOnly &&
-      !beers.some((beer) => favoriteIds.find((f) => f === beer.id)) &&
+      !beers.some((beer) => favoriteIds.includes(beer.id)) &&
       this.showPagination()
     );
   });
 
-  constructor() {
-    effect(() => {
-      this.beersService.fetchBeers(this.filtersService.filters()!);
-    });
-  }
-
   updateFilters(filters: BeerFilters, resetPage = true) {
-    this.filtersService.filters.update((f) => ({
+    this.filters.update((f) => ({
       ...f,
       ...filters,
       page: resetPage ? 1 : (f?.page ?? 1),
     }));
+
     if (resetPage) {
       this.page.set(1);
     }
-    this.urlService.navigateWithSearchParams(this.filtersService.filters() as Object);
+
+    this.urlService.navigateWithSearchParams(this.filters() as Object);
   }
 
   goToPage(page: number) {
     this.page.set(page);
-    this.filtersService.filters.update((f) => ({ ...(f as BeerFilters), page }));
-    this.urlService.navigateWithSearchParams({ ...this.filtersService.filters(), page });
+
+    this.filters.update((f) => ({
+      ...(f as BeerFilters),
+      page,
+    }));
+
+    this.urlService.navigateWithSearchParams({
+      ...this.filters(),
+      page,
+    });
   }
 
   retry() {
-    const currentFilters = this.filtersService.filters();
-    this.updateFilters(currentFilters!, false);
+    const currentFilters = this.filters();
+    this.updateFilters(currentFilters, false);
   }
 
   resetFilters() {
-    this.filtersService.filters.set(DEFAULT_FILTERS);
+    this.filters.set(DEFAULT_FILTERS);
     this.page.set(1);
     this.urlService.navigateWithoutParams(true);
   }

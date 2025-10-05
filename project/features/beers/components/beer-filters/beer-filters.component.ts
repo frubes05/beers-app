@@ -1,13 +1,14 @@
-import { ChangeDetectionStrategy, Component, effect, inject, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { debounceTime, Subscription } from 'rxjs';
+import { debounceTime, tap } from 'rxjs';
 import { FiltersService } from '@features/beers/services/filters.service';
 import { FormService } from '@features/beers/services/form.service';
 import { BeerFilters as BeerFiltersType } from '@features/beers/types/types';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-beer-filters',
@@ -23,26 +24,23 @@ import { BeerFilters as BeerFiltersType } from '@features/beers/types/types';
   styleUrls: ['./beer-filters.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BeerFiltersComponent implements OnDestroy {
-  private readonly subscription = new Subscription();
+export class BeerFiltersComponent {
   private readonly filtersService = inject(FiltersService);
   readonly formService = inject(FormService);
+
+  readonly formGroupChanges = toSignal(
+    this.formService.formGroup.valueChanges.pipe(
+      debounceTime(300),
+      tap((formValues) => {
+        this.filtersService.updateFilters(formValues as BeerFiltersType);
+      }),
+    ),
+  );
 
   constructor() {
     effect(() => {
       const filters = this.filtersService.filters();
       this.formService.updateFormValues(filters);
     });
-
-    this.subscription.add(
-      this.formService.formGroup.valueChanges.pipe(debounceTime(300)).subscribe(() => {
-        const value = this.formService.formGroup.getRawValue();
-        this.filtersService.updateFilters(value as BeerFiltersType);
-      }),
-    );
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }

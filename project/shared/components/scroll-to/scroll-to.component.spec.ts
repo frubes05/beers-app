@@ -1,6 +1,5 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ScrollToComponent } from '@shared/components/scroll-to/scroll-to.component';
 
 describe('ScrollTo', () => {

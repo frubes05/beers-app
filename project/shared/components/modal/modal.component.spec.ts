@@ -1,6 +1,5 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ModalComponent } from '@shared/components/modal/modal.component';
 
 describe('Modal', () => {

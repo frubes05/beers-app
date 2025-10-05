@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BeerFilters } from '@features/beers/types/types';
-import { DEFAULT_FILTERS } from '@features/beers/beers.facade';
+import { DEFAULT_FILTERS } from '@root/app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class FormService {

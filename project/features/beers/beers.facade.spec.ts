@@ -61,12 +61,6 @@ describe('BeersFacade', () => {
     expect(facade).toBeTruthy();
   });
 
-  it('should call fetchBeers via effect on init', async () => {
-    await new Promise((resolve) => setTimeout(resolve, 0)); // setTimeout call to force it at the end
-
-    expect(beersService.fetchBeers).toHaveBeenCalledOnceWith(mockFilters);
-  });
-
   it('should call updateFilters correctly and reset page when resetPage is true', () => {
     const newFilters = { beer_name: 'lager' } as BeerFilters;
 
@@ -121,7 +115,6 @@ describe('BeersFacade', () => {
 
   it('should compute showPagination correctly', () => {
     beersService.error.set(null);
-    beersService.beers.set([mockBeer]);
 
     expect(facade.showPagination()).toBeTrue();
   });
@@ -129,7 +122,6 @@ describe('BeersFacade', () => {
   it('should compute showBackButton correctly', () => {
     filtersService.filters.set({ ...mockFilters, favoritesOnly: true });
     favoritesService.favorites.set([{ id: 99 } as BeerViewModel]);
-    beersService.beers.set([{ id: 100 } as BeerViewModel]);
 
     expect(facade.showBackButton()).toBeTrue();
   });
