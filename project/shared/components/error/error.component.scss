@@ -1,9 +1,10 @@
+@use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
 .error {
-  padding: 32px;
+  padding: $gutter-xl;
 
-  @include flex-layout(column, center, center, nowrap, 24px);
+  @include flex-layout(column, center, center, nowrap, $gutter-lg);
 
   p {
     font-size: 24px;

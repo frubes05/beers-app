@@ -1,3 +1,4 @@
+@use './styles/variables' as *;
 @use './styles/mixins' as *;
 
 .beer-card-skeletons {
@@ -5,8 +6,8 @@
     height: 100%;
     width: 100%;
     gap: 32px;
-    padding-bottom: 16px;
-    background-color: #f3f4f7;
+    padding-bottom: $gutter-md;
+    background-color: $secondary-color;
     border: none;
     border-radius: 0;
 
@@ -17,18 +18,18 @@
     margin-left: auto;
     height: 40px;
     width: 40px;
-    background-color: lightgrey;
+    background-color: $secondary-color;
   }
 
   ::ng-deep &__content {
     height: 400px;
-    background-color: lightgrey;
+    background-color: $secondary-color;
   }
 
   ::ng-deep &__actions {
     height: 40px;
     width: 100%;
     margin-top: auto;
-    background-color: lightgrey;
+    background-color: $secondary-color;
   }
 }

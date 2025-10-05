@@ -1,12 +1,13 @@
+@use './styles/variables' as *;
 @use './styles/mixins' as *;
 
 .beer-card {
   ::ng-deep mat-card {
     height: 100%;
     width: 100%;
-    gap: 32px;
+    gap: $gutter-xl;
     padding-bottom: 16px;
-    background-color: #f3f4f7;
+    background-color: $secondary-color-light;
     border: none;
     border-radius: 0;
 
@@ -31,9 +32,9 @@
   }
 
   ::ng-deep .mdc-button .mdc-button__label {
-    color: black;
+    color: $black;
 
-    @include flex-layout(row, center, center, nowrap, 8px);
+    @include flex-layout(row, center, center, nowrap, $gutter-sm);
   }
 
   ::ng-deep mat-card-actions {
@@ -47,9 +48,9 @@
       }
 
       &--details {
-        color: black;
+        color: $black;
         border-radius: 8px;
-        background-color: white;
+        background-color: $white;
 
         @include flex-layout(row, center, center);
       }

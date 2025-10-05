@@ -1,11 +1,13 @@
+@use 'styles/variables' as *;
+
 @keyframes pulse {
   0% {
-    background-color: lightgrey;
+    background-color: $secondary-color;
   }
   50% {
-    background-color: darkgrey;
+    background-color: $secondary-color-dark;
   }
   100% {
-    background-color: lightgrey;
+    background-color: $secondary-color;
   }
 }

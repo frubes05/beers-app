@@ -1,19 +1,21 @@
+@use 'styles/variables' as *;
+
 dialog {
   border: none;
   padding: 0;
   border-radius: 8px;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: $box-shadow;
   position: fixed;
 }
 
 ::backdrop {
-  background: rgba(0, 0, 0, 0.5);
+  background: $backdrop-color;
 }
 
 .modal-content {
-  padding: 2rem;
+  padding: $gutter-xl;
   background: white;
   border-radius: 8px;
   position: relative;

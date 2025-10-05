@@ -1,3 +1,4 @@
+@use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
 .beers-list {
@@ -6,18 +7,18 @@
   padding-left: 0;
   list-style-type: none;
 
-  @include grid-layout(repeat(1, minmax(0, 1fr)), 48px);
+  @include grid-layout(repeat(1, minmax(0, 1fr)), $gutter-xl);
 
   @include media-breakpoint-up(md) {
     overflow-y: auto;
     height: 600px;
-    padding-right: 64px;
+    padding-right: $gutter-2xl;
 
-    @include grid-layout(repeat(2, minmax(0, 1fr)), 32px);
+    @include grid-layout(repeat(2, minmax(0, 1fr)), $gutter-xl);
   }
 
   @include media-breakpoint-up(lg) {
-    @include grid-layout(repeat(3, minmax(0, 1fr)), 32px);
+    @include grid-layout(repeat(3, minmax(0, 1fr)), $gutter-xl);
   }
 
   &::-webkit-scrollbar {
@@ -35,11 +36,11 @@
 
   &::-webkit-scrollbar-thumb {
     padding: 0;
-    background-color: #cbccc9;
+    background-color: $secondary-color;
   }
 
   &::-webkit-scrollbar-track {
-    border: 1px solid #cdccd9;
-    background-color: #fafbf9;
+    border: 1px solid $secondary-color-dark;
+    background-color: $secondary-color;
   }
 }

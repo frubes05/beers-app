@@ -1,8 +1,9 @@
+@use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
 footer {
-  padding: 64px 0;
-  background-color: #ffc71e;
+  padding: $gutter-2xl 0;
+  background-color: $primary-color;
 
   @include flex-layout(row, center, center);
 
