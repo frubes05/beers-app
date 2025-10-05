@@ -1,14 +1,16 @@
+@use './styles/mixins' as *;
+
 .beer-card-skeletons {
   ::ng-deep mat-card {
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
     gap: 32px;
     padding-bottom: 16px;
     background-color: #f3f4f7;
     border: none;
     border-radius: 0;
+
+    @include flex-layout(column);
   }
 
   ::ng-deep &__header {

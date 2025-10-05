@@ -1,18 +1,14 @@
 @use 'styles/mixins' as *;
 
 .beer-filters {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0;
   padding: 16px 0;
 
+  @include flex-layout(column, space-between, center, nowrap, 0);
+
   @include media-breakpoint-up(md) {
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 0 32px;
     padding: 16px;
+
+    @include flex-layout(row, space-between, center, wrap, 0 32px);
   }
 
   &__item {
@@ -26,8 +22,7 @@
     &.favorites,
     &.beer-name,
     &.sort {
-      display: flex;
-      flex-direction: column;
+      @include flex-layout(column);
     }
 
     & > mat-label {

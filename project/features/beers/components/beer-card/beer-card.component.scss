@@ -1,14 +1,16 @@
+@use './styles/mixins' as *;
+
 .beer-card {
   ::ng-deep mat-card {
     height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
     gap: 32px;
     padding-bottom: 16px;
     background-color: #f3f4f7;
     border: none;
     border-radius: 0;
+
+    @include flex-layout(column);
   }
 
   ::ng-deep mat-card-header {
@@ -29,17 +31,15 @@
   }
 
   ::ng-deep .mdc-button .mdc-button__label {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    align-items: center;
     color: black;
+
+    @include flex-layout(row, center, center, nowrap, 8px);
   }
 
   ::ng-deep mat-card-actions {
     margin-top: auto;
-    display: flex;
-    justify-content: center;
+
+    @include flex-layout(row, center);
 
     &__button {
       &--favorites {
@@ -47,12 +47,11 @@
       }
 
       &--details {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         color: black;
         border-radius: 8px;
         background-color: white;
+
+        @include flex-layout(row, center, center);
       }
     }
   }

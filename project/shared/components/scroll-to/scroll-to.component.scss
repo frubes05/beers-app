@@ -8,13 +8,12 @@ button {
   margin: 0;
   width: 36px;
   height: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+
+  @include flex-layout(row, center, center);
 
   @include media-breakpoint-up(md) {
     right: 24px;

@@ -1,8 +1,6 @@
+@use 'styles/mixins' as *;
+
 .beer-modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
   background: #fff;
   border-radius: 1.25rem;
   max-width: 700px;
@@ -11,10 +9,10 @@
   color: #222;
   font-family: 'Inter', system-ui, sans-serif;
 
+  @include flex-layout(column, flex-start, center, nowrap, 1.5rem);
+
   &__header {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
+    @include flex-layout(column, flex-start, flex-start, nowrap, 1.5rem);
   }
 
   &__image {
@@ -43,11 +41,10 @@
   }
 
   &__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
     font-size: 0.95rem;
     color: #555;
+
+    @include flex-layout(row, flex-start, center, wrap, 1rem);
   }
 
   &__description {

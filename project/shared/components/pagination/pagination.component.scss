@@ -1,7 +1,7 @@
+@use 'styles/mixins' as *;
+
 .pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
   margin-top: 1rem;
+
+  @include flex-layout(row, center, center, nowrap, 1rem);
 }

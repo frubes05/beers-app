@@ -3,22 +3,21 @@
 .beers-list {
   line-height: 1em;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
   padding-left: 0;
   list-style-type: none;
-  gap: 48px;
+
+  @include grid-layout(repeat(1, minmax(0, 1fr)), 48px);
 
   @include media-breakpoint-up(md) {
     overflow-y: auto;
     height: 600px;
     padding-right: 64px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px;
+
+    @include grid-layout(repeat(2, minmax(0, 1fr)), 32px);
   }
 
   @include media-breakpoint-up(lg) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    @include grid-layout(repeat(3, minmax(0, 1fr)), 32px);
   }
 
   &::-webkit-scrollbar {

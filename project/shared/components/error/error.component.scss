@@ -1,10 +1,9 @@
+@use 'styles/mixins' as *;
+
 .error {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  justify-content: center;
-  align-items: center;
   padding: 32px;
+
+  @include flex-layout(column, center, center, nowrap, 24px);
 
   p {
     font-size: 24px;

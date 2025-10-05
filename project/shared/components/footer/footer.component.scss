@@ -3,9 +3,8 @@
 footer {
   padding: 64px 0;
   background-color: #ffc71e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  @include flex-layout(row, center, center);
 
   img {
     width: 100%;

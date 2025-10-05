@@ -49,15 +49,15 @@ app-root {
 }
 
 app-root {
-  display: flex;
-  flex-direction: column;
   min-height: 100%;
+
+  @include flex-layout(column);
 }
 
 app-beers {
   flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
+
+  @include flex-layout(column);
 }
 
 app-footer {
