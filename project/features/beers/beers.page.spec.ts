@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { BeersPage } from '@features/beers/beers.page';
@@ -43,6 +43,24 @@ describe('Beers', () => {
             navigateWithoutParams: jasmine.createSpy('navigateWithoutParams'),
           },
         },
+        {
+          provide: ModalService,
+          useValue: {
+            openModal: jasmine.createSpy('openModal'),
+          },
+        },
+        {
+          provide: BeersFacade,
+          useValue: {
+            goToPage: jasmine.createSpy('goToPage'),
+            loading: signal(false),
+            beers: signal(mockBeer),
+            error: signal('Error'),
+            showBackButton: signal(false),
+            showPagination: signal(true),
+            page: signal(1),
+          },
+        },
         provideZonelessChangeDetection(),
       ],
     }).compileComponents();
@@ -59,8 +77,6 @@ describe('Beers', () => {
   });
 
   it('should open modal with correct parameters when handleDetailsClicked is called', () => {
-    spyOn(modalService, 'openModal');
-
     component.handleDetailsClicked(mockBeer);
 
     expect(modalService.openModal).toHaveBeenCalledOnceWith({
@@ -71,8 +87,6 @@ describe('Beers', () => {
   });
 
   it('should call goToPage on beersFacade when handlePageClick is called', () => {
-    spyOn(beersFacade, 'goToPage');
-
     component.handlePageClick(2);
 
     expect(beersFacade.goToPage).toHaveBeenCalledOnceWith(2);

@@ -1,7 +1,7 @@
 import { BeerFilters } from './features/beers/types/types';
 
 export const BASE_URL = 'https://api.adscanner.tv/punkapi/v2/beers';
-export const SESSION_STORAGE_KEY = 'key';
+export const SESSION_STORAGE_KEY = 'beers';
 
 export const DEFAULT_FILTERS: BeerFilters = {
   beer_name: '',

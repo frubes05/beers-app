@@ -1,45 +1,44 @@
 import { HttpClient } from '@angular/common/http';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
 import { BeersService } from '@features/beers/services/beers.service';
 import { UrlService } from '@root/core/services/url-service/url.service';
-import { mockFilters } from '@features/beers/components/beer-filters/beer-filters.component.spec';
-import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
+import { FiltersService } from '@features/beers/services/filters.service';
 import { CachingService } from '@root/core/services/caching-service/caching.service';
 import { BASE_URL } from '@root/app.constants';
+import { of, throwError } from 'rxjs';
+import { mockFilters, mockBeer, mockParams } from '@features/beers/mocks/beers-mock';
 
 describe('BeersService', () => {
   let beersService: BeersService;
+  let urlService: UrlService;
   let httpClient: HttpClient;
   let cachingService: CachingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        {
-          provide: HttpClient,
-          useValue: {
-            get: jasmine.createSpy('get').and.returnValue({
-              pipe: () => ({
-                subscribe: ({ next }: any) => next(mockBeer),
-              }),
-            }),
-          },
-        },
-        { provide: ActivatedRoute, useValue: ActivatedRoute },
+        { provide: HttpClient, useValue: jasmine.createSpyObj('HttpClient', ['get']) },
         {
           provide: UrlService,
-          useValue: {
-            getSearchParamsFromObject: jasmine
-              .createSpy('getSearchParamsFromObject')
-              .and.returnValue(mockBeer),
-          },
+          useValue: jasmine.createSpyObj('UrlService', ['getSearchParamsFromObject']),
+        },
+        {
+          provide: CachingService,
+          useValue: jasmine.createSpyObj('CachingService', ['get', 'set']),
         },
         provideZonelessChangeDetection(),
+        {
+          provide: FiltersService,
+          useValue: {
+            filters: () => mockFilters,
+          },
+        },
       ],
     });
+
     beersService = TestBed.inject(BeersService);
+    urlService = TestBed.inject(UrlService);
     httpClient = TestBed.inject(HttpClient);
     cachingService = TestBed.inject(CachingService);
   });
@@ -48,29 +47,48 @@ describe('BeersService', () => {
     expect(beersService).toBeTruthy();
   });
 
-  it('should fetch new beers if nothing is cached', () => {
-    expect(httpClient.get).toHaveBeenCalledOnceWith(BASE_URL, {
-      params: { name: 'Beer_1', id: 10, isFavorite: false },
-    });
+  it('should fetch beers when not cached', async () => {
+    (cachingService as any).get.and.returnValue(null);
+    (httpClient as any).get.and.returnValue(of([mockBeer]));
+    (urlService as any).getSearchParamsFromObject.and.returnValue(mockParams);
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const result = beersService.beers();
+
+    expect(result).toEqual([mockBeer]);
+    expect(beersService.loading()).toBeFalse();
+    expect(cachingService.set).toHaveBeenCalledWith(
+      `${BASE_URL}?name=Beer_1&id=10&isFavorite=false`,
+      [mockBeer],
+    );
+    expect(httpClient.get).toHaveBeenCalledWith(BASE_URL, { params: mockParams });
   });
 
-  it('should fetch new beers if nothing is cached', () => {
-    (cachingService as any).get = jasmine.createSpy('get').and.returnValue(mockBeer);
+  it('should return beers from cache if available', async () => {
+    (cachingService as any).get.and.returnValue([mockBeer]);
+    (urlService as any).getSearchParamsFromObject.and.returnValue(mockParams);
 
-    expect(beersService.beers()).toEqual(Object(mockBeer));
-    expect(httpClient.get).not.toHaveBeenCalledOnceWith(BASE_URL, {
-      params: { name: 'Beer_1', id: 10, isFavorite: false },
-    });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const result = beersService.beers();
+
+    expect(result).toEqual([mockBeer]);
+    expect(httpClient.get).not.toHaveBeenCalled();
+    expect(beersService.loading()).toBeFalse();
   });
 
-  it('should handle fetchBeers error correctly', () => {
-    (cachingService as any).get = jasmine.createSpy('get').and.returnValue(null);
-    (httpClient as any).get = jasmine.createSpy('get').and.returnValue({
-      pipe: () => ({ subscribe: (obs: any) => obs.error() }),
-    });
+  it('should handle error during fetch', async () => {
+    (cachingService as any).get.and.returnValue(null);
+    (httpClient as any).get.and.returnValue(throwError(() => new Error('Failed')));
+    (urlService as any).getSearchParamsFromObject.and.returnValue(mockParams);
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const result = beersService.beers();
 
     expect(beersService.error()).toBe('Failed to load beers');
-    expect(beersService.beers()).toEqual([]);
+    expect(result).toEqual([]);
     expect(beersService.loading()).toBeFalse();
   });
 });
