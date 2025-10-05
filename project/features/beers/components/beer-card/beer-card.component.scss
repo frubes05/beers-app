@@ -28,6 +28,14 @@
     }
   }
 
+  ::ng-deep .mdc-button .mdc-button__label {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+
   ::ng-deep mat-card-actions {
     margin-top: auto;
     display: flex;
