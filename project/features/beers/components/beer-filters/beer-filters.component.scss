@@ -9,6 +9,7 @@
   padding: 16px 0;
 
   @include media-breakpoint-up(md) {
+    flex-wrap: wrap;
     flex-direction: row;
     gap: 0 32px;
     padding: 16px;
