@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
@@ -8,7 +8,7 @@ import { debounceTime, tap } from 'rxjs';
 import { FiltersService } from '@features/beers/services/filters.service';
 import { FormService } from '@features/beers/services/form.service';
 import { BeerFilters as BeerFiltersType } from '@features/beers/types/types';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-beer-filters',
@@ -28,7 +28,7 @@ export class BeerFiltersComponent {
   private readonly filtersService = inject(FiltersService);
   readonly formService = inject(FormService);
 
-  readonly formGroupChanges = toSignal(
+  readonly handleFormGroupChanges = toSignal(
     this.formService.formGroup.valueChanges.pipe(
       debounceTime(300),
       tap((formValues) => {
@@ -37,10 +37,11 @@ export class BeerFiltersComponent {
     ),
   );
 
-  constructor() {
-    effect(() => {
-      const filters = this.filtersService.filters();
-      this.formService.updateFormValues(filters);
-    });
-  }
+  readonly handleFiltersChanges = toSignal(
+    toObservable(this.filtersService.filters).pipe(
+      tap((filters) => {
+        this.formService.updateFormValues(filters);
+      }),
+    ),
+  );
 }
