@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GlobalErrorService } from '@core/services/global-error-service/global-error.service';
 
 @Injectable()
-export class ErrorHandlingService implements HttpInterceptor {
+export class InterceptorService implements HttpInterceptor {
   private readonly snackBar = inject(MatSnackBar);
   private readonly errorSubject = new BehaviorSubject<string | null>(null);
   private readonly globalErrorService = inject(GlobalErrorService);

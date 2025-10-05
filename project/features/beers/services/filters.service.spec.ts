@@ -1,9 +1,9 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { FiltersService } from './filters.service';
+import { FiltersService } from '@features/beers/services/filters.service';
 import { UrlService } from '@root/core/services/url-service/url.service';
-import { mockFilters } from '../components/beer-filters/beer-filters.component.spec';
-import { DEFAULT_FILTERS } from '../beers.facade';
+import { mockFilters } from '@features/beers/components/beer-filters/beer-filters.component.spec';
+import { DEFAULT_FILTERS } from '@features/beers/beers.facade';
 
 describe('FiltersService', () => {
   let filtersService: FiltersService;

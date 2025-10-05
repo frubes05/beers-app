@@ -2,7 +2,7 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BeerCardComponent } from '@features/beers/components/beer-card/beer-card.component';
-import { BeerViewModel } from '../../types/types';
+import { BeerViewModel } from '@features/beers/types/types';
 
 export const mockBeer = {
   name: 'Beer_1',

@@ -1,8 +1,8 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormService } from '@root/features/beers/services/form.service';
-import { BeerModalComponent } from './beer-modal.component';
-import { mockBeer } from '../beer-card/beer-card.component.spec';
+import { BeerModalComponent } from '@features/beers/components/beer-modal/beer-modal.component';
+import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
 
 describe('BeerModal', () => {
   let component: BeerModalComponent;

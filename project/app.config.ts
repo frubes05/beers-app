@@ -6,7 +6,7 @@ import {
 import { provideRouter } from '@angular/router';
 import { routes } from '@root/app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ErrorHandlingService } from '@core/services/error-handling-service/error-handling.service';
+import { InterceptorService } from '@root/core/services/interceptor-service/interceptor.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: ErrorHandlingService,
+      useClass: InterceptorService,
       multi: true,
     },
   ],

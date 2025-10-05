@@ -4,8 +4,8 @@ import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { BASE_URL, BeersService } from '@features/beers/services/beers.service';
 import { UrlService } from '@root/core/services/url-service/url.service';
-import { mockFilters } from '../components/beer-filters/beer-filters.component.spec';
-import { mockBeer } from '../components/beer-card/beer-card.component.spec';
+import { mockFilters } from '@features/beers/components/beer-filters/beer-filters.component.spec';
+import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
 import { CachingService } from '@root/core/services/caching-service/caching.service';
 
 describe('BeersService', () => {

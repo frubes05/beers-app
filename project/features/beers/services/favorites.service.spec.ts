@@ -1,7 +1,7 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { mockBeer } from '../components/beer-card/beer-card.component.spec';
-import { FavoritesService } from './favorites.service';
+import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
+import { FavoritesService } from '@features/beers/services/favorites.service';
 import { SessionStorageService } from '@root/core/services/session-storage-service/session-storage.service';
 
 describe('FavoritesService', () => {

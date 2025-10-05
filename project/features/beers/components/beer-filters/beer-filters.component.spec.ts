@@ -3,9 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { BeerFiltersComponent } from '@features/beers/components/beer-filters/beer-filters.component';
 import { UrlService } from '@root/core/services/url-service/url.service';
-import { FiltersService } from '../../services/filters.service';
-import { BeerFilters } from '../../types/types';
-import { FormService } from '../../services/form.service';
+import { FiltersService } from '@features/beers/services/filters.service';
+import { BeerFilters } from '@features/beers/types/types';
+import { FormService } from '@features/beers/services/form.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
 const realFormGroup = new FormGroup({

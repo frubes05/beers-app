@@ -2,11 +2,11 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BeerListComponent } from '@features/beers/components/beer-list/beer-list.component';
 import { UrlService } from '@root/core/services/url-service/url.service';
-import { mockBeer } from '../beer-card/beer-card.component.spec';
+import { mockBeer } from '@features/beers/components/beer-card/beer-card.component.spec';
 import { By } from '@angular/platform-browser';
-import { BeerCardComponent } from '../beer-card/beer-card.component';
+import { BeerCardComponent } from '@features/beers/components/beer-card/beer-card.component';
 import { ErrorComponent } from '@root/shared/components/error/error.component';
-import { BeerListEmptyComponent } from './beer-list-empty/beer-list-empty.component';
+import { BeerListEmptyComponent } from '@features/beers/components/beer-list/beer-list-empty/beer-list-empty.component';
 
 describe('BeerList', () => {
   let component: BeerListComponent;
