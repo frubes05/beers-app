@@ -12,7 +12,7 @@ describe('FallbackImageDirective', () => {
     img.src = errorImage;
 
     fallbackImageDirective = new FallbackImageDirective();
-    fallbackImageDirective.fallback = fallbackImage;
+    fallbackImageDirective.appFallback = fallbackImage;
   });
 
   it('should replace src with fallback on error', () => {

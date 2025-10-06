@@ -2,14 +2,24 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { FormService } from '@features/beers/services/form.service';
 import { IBeerFilters } from '@features/beers/types/types';
-import { DEFAULT_FILTERS } from '@root/app.constants';
-import { mockFilters } from '../mocks/beers-mock';
 
 describe('FormService', () => {
   let formService: FormService;
 
-  const { page: pg, ...filtersWithoutPage } = mockFilters;
-  const { page: dpg, ...defaultFiltersWithoutPage } = DEFAULT_FILTERS;
+  const filtersWithoutPage = {
+    beer_name: 'ipa',
+    abv_lt: 15,
+    abv_gt: 0,
+    sortBy: 'abv:asc',
+    favoritesOnly: false,
+  };
+  const defaultFiltersWithoutPage = {
+    beer_name: '',
+    abv_gt: 0,
+    abv_lt: 15,
+    sortBy: 'name:asc',
+    favoritesOnly: false,
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({

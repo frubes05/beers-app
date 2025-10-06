@@ -1,61 +1,62 @@
-# BeersApp
+# Beers App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.3.
+Angular aplikacija za otkrivanje različitih vrsta piva koristeći PUNK API (https://api.adscanner.tv/punkapi/v2/):
 
-## Development server
+## Značajke aplikacije
 
-To start a local development server, run:
+- Lista piva sa paginacijom
+- Napredni filteri prema naziv i, razini alkohola
+- Spremanje favorita u Session Storage s mogučnošću filtra
+- Sortiranje prema uzlaznom ili silaznom redoslijedu
+- URL za vođenje "State-a" za aktivne filtere i redni broj stranice
+- In-memory Caching servis i Skeletoni dok se podaci učitavaju
+- Responzivni dizajn
+- "Error handling" mehanizam i mogućnost ponavljanja ukoliko API baci grešku
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Korištene tehnologije i arhitektura
 
-## Code scaffolding
+- [Angular] v20 i standalone komponente
+- [State] [management] Signali za reaktivan state, zajedno sa RxJS-om za asinkrone radnje poput HTTP zahtjeva i debouncanih promjena u poljima
+- [Styling] SCSS sa modularnom strukturom zajedno sa Angular Material komponentama
+- [Facade] [Pattern] - BeersFacade se koristi za abstrakciju interakcije kompleksnog state managementa i servisa
+- [Servisi] - Caching servis - in-memory cacheiranje za API pozive - Session storage servis - servis za spremanje omiljenih piva u Session storage - Url servis - sinkronizacija state-a aplikacije i URL parametara - Interceptor servis - globalni HttpInterceptor za hvatanje grešaka u cijeloj aplikaciji (puno problema s API-jem, dosta je nestabilan) - Modal servis - dinamički servis za kreiranje i upravljanje modalima
+- [Testiranje] - Unit testovi sa relativno visokom pokrivenošću koda (90%)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+### Kloniranje repositoryja
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Za kloniranje repositoryja:
 
-```bash
-ng generate --help
-```
+<pre> `git clone https://github.com/frubes05/beers-app.git` </pre>
 
-## Building
+### Instalacija dependencyja
 
-To build the project run:
+Za instalaciju projektnih ovisnosti (dependencies): <pre> `npm install` </pre>
 
-```bash
-ng build
-```
+## Pokretanje aplikacije
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Za pokretanje projekta: <pre> `npm start` </pre>
 
-## Running unit tests
+Aplikacija će biti dostupna na adresi `http://localhost:4200/`.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## Formatiranje koda
 
-## Running end-to-end tests
+Aplikacija koristi Prettier za automatsko formatiranje koda.
+Konfiguracija se nalazi u `.prettierrc` i `.vscode/settings.json` datotekama.
 
-For end-to-end (e2e) testing, run:
+Za ručno formatiranje pokrenuti: <pre> `npm run format` </pre>
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Testiranje koda
 
-## Additional Resources
+Aplikacija koristi Karma i Jasmine za testiranje Angular komponenti, servisa, direktiva i ostalih modula.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Za ručno izvršavanje testova: <pre> `npm run test` </pre>
 
-# beers-app
+---

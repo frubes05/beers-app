@@ -1,6 +1,7 @@
 {
   "name": "beers-app",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -68,6 +69,7 @@
     "lint-staged": "^16.2.3",
     "prettier": "^3.6.2",
     "typescript": "~5.9.2",
+    "typescript-eslint": "^8.45.0",
     "zone.js": "^0.15.1"
   }
 }

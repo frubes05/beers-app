@@ -29,11 +29,6 @@ interface IBeerMethod {
   twist: string | null;
 }
 
-interface IBeerVolume {
-  value: number;
-  unit: string;
-}
-
 interface IBeerIngredients {
   malt: Array<{
     name: string;

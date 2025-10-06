@@ -13,10 +13,11 @@ import * as AppConstants from '@root/app.constants';
 })
 export class BeerModalComponent extends ModalComponent {
   protected beerData!: IBeerViewModel;
-  protected fallbackImage = AppConstants.FALLBACK_IMAGE;
+  protected appFallbackImage = AppConstants.FALLBACK_IMAGE;
 
   constructor(
     @Inject('CONTEXT') data: IBeerViewModel,
+    // eslint-disable-next-line no-unused-vars
     @Inject('CLOSE_MODAL') private readonly closeModal: (el: HTMLElement) => void,
   ) {
     super();

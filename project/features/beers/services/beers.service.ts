@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal, Signal } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { inject, Injectable, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { IBeerFilters, IBeerViewModel } from '@features/beers/types/types';
 import { UrlService } from '@core/services/url-service/url.service';
 import { CachingService } from '@core/services/caching-service/caching.service';
