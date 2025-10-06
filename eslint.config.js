@@ -73,7 +73,6 @@ export default [
     files: ['**/*.spec.ts'],
     languageOptions: {
       globals: {
-        // ✅ Jasmine test globals
         describe: 'readonly',
         it: 'readonly',
         beforeEach: 'readonly',
