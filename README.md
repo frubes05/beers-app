@@ -17,12 +17,13 @@ Angular aplikacija za otkrivanje različitih vrsta piva koristeći PUNK API (htt
 
 ## Korištene tehnologije i arhitektura
 
-- [Angular] v20 i standalone komponente
-- [State] [management] Signali za reaktivan state, zajedno sa RxJS-om za asinkrone radnje poput HTTP zahtjeva i debouncanih promjena u poljima
-- [Styling] SCSS sa modularnom strukturom zajedno sa Angular Material komponentama
-- [Facade] [Pattern] - BeersFacade se koristi za abstrakciju interakcije kompleksnog state managementa i servisa
-- [Servisi] - Caching servis - in-memory cacheiranje za API pozive - Session storage servis - servis za spremanje omiljenih piva u Session storage - Url servis - sinkronizacija state-a aplikacije i URL parametara - Interceptor servis - globalni HttpInterceptor za hvatanje grešaka u cijeloj aplikaciji (puno problema s API-jem, dosta je nestabilan) - Modal servis - dinamički servis za kreiranje i upravljanje modalima
-- [Testiranje] - Unit testovi sa relativno visokom pokrivenošću koda (90%)
+- Angular v20 i standalone komponente
+- State management - Signali za reaktivan state, zajedno sa RxJS-om za asinkrone radnje poput HTTP zahtjeva i debouncanih promjena u poljima
+- Styling - SCSS sa modularnom strukturom zajedno sa Angular Material komponentama
+- Facade Pattern - BeersFacade se koristi za abstrakciju interakcije kompleksnog state managementa i servisa
+- Ostali Design Patterni - Container/Presentational pattern, Injector pattern
+- Servisi - Caching servis - in-memory cacheiranje za API pozive - Session storage servis - servis za spremanje omiljenih piva u Session storage - Url servis - sinkronizacija state-a aplikacije i URL parametara - Interceptor servis - globalni HttpInterceptor za hvatanje grešaka u cijeloj aplikaciji (puno problema s API-jem, dosta je nestabilan) - Modal servis - dinamički servis za kreiranje i upravljanje modalima
+- Testiranje - Unit testovi sa relativno visokom pokrivenošću koda (90%)
 
 ---
 
